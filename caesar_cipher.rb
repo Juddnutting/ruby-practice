@@ -1,6 +1,6 @@
 
 def caesar_cipher(word,shift)
-  shifted = []
+  shifted = ""
   word.each_byte do |c| 
 
     if c.between?(65,90)
@@ -8,24 +8,19 @@ def caesar_cipher(word,shift)
       if new_char > 90
         new_char = (new_char % 90) + 64
       end
-    shifted.push(new_char)
-    
+    shifted += new_char.chr    
     elsif c.between?(97,122)
       new_char = c + shift
       if new_char > 122
       new_char = (new_char % 122) + 96
       end
-      shifted.push(new_char)
+      shifted += new_char.chr
     else
-     shifted.push(c)
+     shifted += c.chr
     end
   end
 
-  shifted_words = ""
-  shifted.each do|num|
-    shifted_words << num.chr
-  end
-  return shifted_words
+  return shifted
 end
 
-#puts caesar_cipher("HI there! ZZZzz", 4)
+puts caesar_cipher("HI there! ZZZzz", 1)
