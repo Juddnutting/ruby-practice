@@ -1,4 +1,7 @@
 module Enumerable
+  # Quick and dirty functions. Learning how yielding and calling procs works
+  
+  
   def my_each
     return self unless block_given?
     for i in self
