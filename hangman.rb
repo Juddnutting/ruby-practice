@@ -1,8 +1,7 @@
 require 'yaml'
 class Hangman
-  require 'yaml'
-  attr_accessor :display, :tries, :guesses
-  attr_reader :word
+  
+  attr_accessor :display, :tries, :guesses, :word
   
   def initialize
     @word = ""
@@ -45,8 +44,8 @@ class Hangman
   end
 
   def start_game
-    @word = get_new_word
-    @display = "_" * word.length
+    @word=  get_new_word
+    @display= "_" * word.length
     @tries = 3
     @guesses = []
     input = menu
@@ -57,16 +56,17 @@ class Hangman
     end
   end
   
+  def word=(new_val)
+    @word = new_val
+  end
+  
   def menu
     puts "welcome to hangman"
     puts "press 1 to load a game"
     puts "press enter to start new game"
-    input = gets.chomp
-    
-    return input
+    input = gets.chomp  
   end
   
-
   def insert_letter(char)
      flag = false
      for i in (0..word.length-1)
@@ -93,17 +93,14 @@ class Hangman
       return true
     end
   end
-   
     
-  
   def menu_small
   puts "1-Load; 2-Save; or any letter to guess"
   gets.chomp.downcase
   end
   
-  def play
-    
-    puts word
+  def play   
+    #puts word #for troubleshooting
     while true
       display_word
       input = menu_small
@@ -120,9 +117,9 @@ class Hangman
         guesses << guess
         insert_letter(guess)
       else
-        puts "not a valid selection try again"
-        
+        puts "not a valid selection try again" 
       end
+      
       puts ""
       puts "Guesses left #{tries}"
       if game_won?
@@ -138,17 +135,10 @@ class Hangman
         start_game
       end
     end
-    
-  end
-      
-      
-      
-      
-
-    
+  end   
 end #end class
   
-  go = Hangman.new
+go = Hangman.new
 go.start_game
 
   
