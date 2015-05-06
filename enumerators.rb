@@ -4,7 +4,8 @@ module Enumerable
   
   def my_each
     return self unless block_given?
-    for i in self
+    n = self.length-1
+    for i in 0..n
       yield self[i]
     end
   end
